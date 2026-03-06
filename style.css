@@ -441,6 +441,107 @@ img {
 }
 
 /* ============================================================
+   BIO
+   ============================================================ */
+
+.section-bio {
+  padding: clamp(80px, 12vw, 160px) 0;
+  border-top: 1px solid var(--border);
+}
+
+.bio-inner {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: clamp(3rem, 6vw, 7rem);
+  align-items: start;
+}
+
+.bio-img-wrap {
+  position: sticky;
+  top: calc(var(--nav-h) + 2rem);
+}
+
+.bio-img {
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  object-position: top;
+  filter: grayscale(20%);
+  transition: filter 0.4s ease;
+}
+
+.bio-img:hover {
+  filter: grayscale(0%);
+}
+
+.bio-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.bio-name {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin: 0.5rem 0 0.5rem;
+}
+
+.bio-role {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.bio-text {
+  font-size: clamp(1rem, 1.4vw, 1.125rem);
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 680px;
+}
+
+.bio-text em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.bio-collab {
+  border-top: 1px solid var(--border);
+  padding-top: 1.75rem;
+  max-width: 680px;
+}
+
+.bio-collab-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+}
+
+.bio-collab-list {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.9;
+}
+
+@media (max-width: 900px) {
+  .bio-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .bio-img-wrap {
+    position: static;
+    max-width: 280px;
+  }
+}
+
+/* ============================================================
    FEATURED WORK
    ============================================================ */
 

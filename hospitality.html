@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Luxury Hospitality Campaigns — Benjamin Co//Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ============================================================
+       DESIGN SYSTEM — inherits BenjaminCoLab palette
+       ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:           #0d0d0d;
+      --surface:      #141414;
+      --surface2:     #1c1c1c;
+      --text:         #ffffff;
+      --text-muted:   #888888;
+      --accent:       #EA6E43;
+      --accent-hover: #d85f34;
+      --border:       rgba(255,255,255,0.08);
+      --font-sans:    'Space Grotesk', sans-serif;
+      --font-mono:    'Space Mono', monospace;
+      --nav-h:        72px;
+      --max-w:        1280px;
+      --gutter:       clamp(20px, 5vw, 80px);
+    }
+
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    .container {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+    }
+
+    /* ============================================================
+       NAV
+       ============================================================ */
+    #nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      height: var(--nav-h);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 var(--gutter);
+      transition: background 0.4s ease, backdrop-filter 0.4s ease;
+    }
+    #nav.scrolled {
+      background: rgba(13,13,13,0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: var(--font-mono); font-weight: 700;
+      font-size: 0.95rem; letter-spacing: 0.08em;
+      color: var(--text); transition: color 0.2s;
+    }
+    .nav-logo:hover { color: var(--accent); }
+    .nav-links { display: flex; align-items: center; gap: 2.5rem; }
+    .nav-links a {
+      font-size: 0.875rem; font-weight: 500; letter-spacing: 0.04em;
+      color: var(--text-muted); transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links .nav-cta {
+      color: var(--accent); border: 1px solid var(--accent);
+      padding: 0.5rem 1.25rem; border-radius: 2px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .nav-links .nav-cta:hover { background: var(--accent); color: #fff; }
+    .nav-hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 4px;
+    }
+    .nav-hamburger span {
+      display: block; width: 24px; height: 2px;
+      background: var(--text); transition: transform 0.3s, opacity 0.3s;
+    }
+
+    /* ============================================================
+       MOBILE MENU
+       ============================================================ */
+    .mobile-menu {
+      position: fixed; top: var(--nav-h); left: 0; right: 0; bottom: 0;
+      background: var(--bg); z-index: 999;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 2.5rem;
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.77,0,0.175,1);
+    }
+    .mobile-menu.open { transform: translateX(0); }
+    .mobile-link { font-size: 2rem; font-weight: 700; letter-spacing: 0.02em; }
+
+    /* ============================================================
+       HERO
+       ============================================================ */
+    #hero {
+      position: relative; width: 100%; height: 100dvh; min-height: 640px;
+      overflow: hidden; display: flex;
+      align-items: flex-end; justify-content: flex-start;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(135deg, #1a0f08 0%, #0d0d0d 40%, #081218 100%);
+    }
+    /* Cinematic texture overlay */
+    .hero-bg::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        radial-gradient(ellipse 80% 60% at 60% 40%, rgba(234,110,67,0.06) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 80% at 20% 80%, rgba(234,110,67,0.04) 0%, transparent 60%);
+    }
+    .hero-bg::after {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.015'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(13,13,13,0.2) 0%,
+        rgba(13,13,13,0.05) 35%,
+        rgba(13,13,13,0.65) 75%,
+        rgba(13,13,13,0.98) 100%
+      );
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: var(--gutter);
+      padding-bottom: clamp(60px,10vh,120px);
+    }
+    .hero-eyebrow {
+      font-family: var(--font-mono); font-size: 0.75rem;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 1rem;
+      opacity: 0; animation: fadeUp 0.8s 0.3s forwards;
+    }
+    .hero-title {
+      font-size: clamp(3rem, 8.5vw, 8rem); font-weight: 700;
+      line-height: 0.92; letter-spacing: -0.025em; text-transform: uppercase;
+      opacity: 0; animation: fadeUp 0.9s 0.5s forwards;
+    }
+    .hero-slash { color: var(--accent); }
+    .hero-tagline {
+      margin-top: 1.75rem;
+      font-size: clamp(0.875rem, 1.4vw, 1.1rem);
+      font-weight: 300; letter-spacing: 0.12em;
+      color: rgba(255,255,255,0.65);
+      opacity: 0; animation: fadeUp 0.9s 0.7s forwards;
+      max-width: 560px; line-height: 1.8;
+    }
+    .hero-divider {
+      width: 40px; height: 1px;
+      background: var(--accent); margin: 1.5rem 0;
+      opacity: 0; animation: fadeIn 0.9s 0.9s forwards;
+    }
+    .hero-scroll {
+      position: absolute; bottom: clamp(24px,5vh,48px);
+      right: var(--gutter); z-index: 2;
+      display: flex; flex-direction: column;
+      align-items: center; gap: 0.75rem;
+      opacity: 0; animation: fadeIn 1s 1.2s forwards;
+    }
+    .scroll-label {
+      font-family: var(--font-mono); font-size: 0.65rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--text-muted); writing-mode: vertical-rl;
+    }
+    .scroll-line {
+      width: 1px; height: 48px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      animation: scrollPulse 2s 1.5s infinite;
+    }
+
+    /* ============================================================
+       SHARED SECTION STYLES
+       ============================================================ */
+    .section-label {
+      display: block; font-family: var(--font-mono);
+      font-size: 0.7rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-size: clamp(2rem,4vw,3.5rem); font-weight: 700;
+      letter-spacing: -0.02em; line-height: 1.05;
+    }
+    .section-header { margin-bottom: clamp(2.5rem,5vw,5rem); }
+
+    /* ============================================================
+       MANIFESTO
+       ============================================================ */
+    .section-manifesto {
+      padding: clamp(80px,12vw,160px) 0;
+      border-top: 1px solid var(--border);
+    }
+    .manifesto-text {
+      font-size: clamp(1.5rem,3.2vw,2.6rem); font-weight: 300;
+      line-height: 1.35; max-width: 860px;
+      letter-spacing: -0.01em; margin-bottom: 2rem;
+    }
+    .manifesto-text strong {
+      font-weight: 700; color: var(--text);
+    }
+    .manifesto-text em {
+      font-style: italic; color: var(--accent); font-weight: 400;
+    }
+    .manifesto-sub {
+      font-size: 1rem; color: var(--text-muted);
+      max-width: 600px; line-height: 1.75; margin-bottom: 3.5rem;
+    }
+    .manifesto-stats {
+      display: flex; gap: clamp(2rem,6vw,5rem);
+      border-top: 1px solid var(--border);
+      padding-top: 2.5rem;
+    }
+    .stat-item { display: flex; flex-direction: column; gap: 0.25rem; }
+    .stat-number {
+      font-family: var(--font-mono);
+      font-size: clamp(2rem,4vw,3rem); font-weight: 700;
+      color: var(--accent); line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.8rem; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--text-muted);
+    }
+
+    /* ============================================================
+       POSITIONING BANNER
+       ============================================================ */
+    .section-banner {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: clamp(60px,8vw,100px) 0;
+    }
+    .banner-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(3rem,6vw,8rem);
+      align-items: center;
+    }
+    .banner-headline {
+      font-size: clamp(2rem,3.5vw,3rem); font-weight: 700;
+      letter-spacing: -0.02em; line-height: 1.1;
+    }
+    .banner-headline em { color: var(--accent); font-style: normal; }
+    .banner-list {
+      list-style: none; display: flex; flex-direction: column; gap: 1.25rem;
+    }
+    .banner-list li {
+      display: flex; align-items: flex-start; gap: 1rem;
+      font-size: 0.95rem; color: var(--text-muted); line-height: 1.6;
+    }
+    .banner-list li::before {
+      content: '//'; font-family: var(--font-mono);
+      color: var(--accent); font-size: 0.75rem;
+      letter-spacing: 0.05em; margin-top: 0.15em;
+      flex-shrink: 0;
+    }
+    .banner-list li strong { color: var(--text); }
+
+    /* ============================================================
+       PILLARS
+       ============================================================ */
+    .section-pillars {
+      padding: clamp(80px,12vw,160px) 0;
+    }
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 1.5px;
+    }
+    .pillar-card {
+      position: relative; overflow: hidden;
+      aspect-ratio: 3/4;
+      display: flex; flex-direction: column;
+      justify-content: flex-end;
+      cursor: default;
+    }
+    .pillar-bg {
+      position: absolute; inset: 0;
+      transition: transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+    .pillar-card:hover .pillar-bg { transform: scale(1.04); }
+    .pillar-bg-1 {
+      background-image: url('assets/pillar-hospitality.png');
+      background-size: cover; background-position: center;
+    }
+    .pillar-bg-2 {
+      background-image: url('assets/pillar-adventure.png');
+      background-size: cover; background-position: center;
+    }
+    .pillar-bg-3 {
+      background-image: url('assets/pillar-wellness.png');
+      background-size: cover; background-position: center;
+    }
+    .pillar-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(13,13,13,0.96) 0%, rgba(13,13,13,0.3) 60%, transparent 100%);
+    }
+    .pillar-content {
+      position: relative; z-index: 2;
+      padding: 2rem;
+    }
+    .pillar-num {
+      font-family: var(--font-mono); font-size: 0.65rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--accent); display: block; margin-bottom: 0.75rem;
+    }
+    .pillar-name {
+      font-size: clamp(1.25rem,2vw,1.6rem); font-weight: 700;
+      letter-spacing: -0.01em; margin-bottom: 0.75rem; line-height: 1.2;
+    }
+    .pillar-desc {
+      font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.65;
+      margin-bottom: 1.25rem;
+    }
+    .pillar-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .pillar-tags span {
+      font-size: 0.65rem; font-family: var(--font-mono);
+      letter-spacing: 0.06em;
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 0.3rem 0.65rem; color: var(--text-muted); border-radius: 2px;
+    }
+
+    /* ============================================================
+       TIERS
+       ============================================================ */
+    .section-tiers {
+      padding: clamp(80px,12vw,160px) 0;
+      background: var(--surface);
+    }
+    .tiers-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 1.5px;
+      margin-top: clamp(3rem,5vw,5rem);
+    }
+    .tier-card {
+      background: var(--bg);
+      display: flex; flex-direction: column;
+      transition: background 0.3s;
+    }
+    .tier-card:hover { background: #111111; }
+    .tier-header {
+      padding: 2rem 2rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .tier-badge {
+      font-family: var(--font-mono); font-size: 0.65rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--accent); display: block; margin-bottom: 1rem;
+    }
+    .tier-name {
+      font-size: clamp(1.25rem,2vw,1.5rem); font-weight: 700;
+      letter-spacing: -0.01em; margin-bottom: 0.5rem; line-height: 1.2;
+    }
+    .tier-sub {
+      font-size: 0.8rem; color: var(--text-muted);
+      font-family: var(--font-mono); letter-spacing: 0.06em;
+    }
+    .tier-body { padding: 2rem; flex: 1; }
+    .tier-price {
+      font-family: var(--font-mono);
+      font-size: clamp(1.5rem,2.5vw,2rem); font-weight: 700;
+      color: var(--text); margin-bottom: 0.35rem; line-height: 1;
+    }
+    .tier-price-label {
+      font-size: 0.75rem; color: var(--text-muted);
+      letter-spacing: 0.08em; text-transform: uppercase;
+      margin-bottom: 2rem; display: block;
+    }
+    .tier-section-title {
+      font-family: var(--font-mono); font-size: 0.65rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--accent); display: block; margin-bottom: 0.75rem;
+      margin-top: 1.5rem;
+    }
+    .tier-section-title:first-child { margin-top: 0; }
+    .tier-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .tier-list li {
+      font-size: 0.875rem; color: var(--text-muted);
+      display: flex; align-items: flex-start; gap: 0.6rem;
+      line-height: 1.5;
+    }
+    .tier-list li::before {
+      content: '—'; color: var(--accent); font-family: var(--font-mono);
+      font-size: 0.75rem; flex-shrink: 0; margin-top: 0.1em;
+    }
+    .tier-list li strong { color: var(--text); font-weight: 500; }
+    .tier-footer {
+      padding: 1.5rem 2rem 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .tier-cta {
+      display: inline-flex; align-items: center; gap: 0.75rem;
+      font-size: 0.85rem; font-weight: 500;
+      letter-spacing: 0.04em; color: var(--accent);
+      border: 1px solid var(--accent); border-radius: 2px;
+      padding: 0.75rem 1.5rem;
+      transition: background 0.25s, color 0.25s, gap 0.25s;
+      width: 100%; justify-content: center;
+    }
+    .tier-cta:hover { background: var(--accent); color: #fff; gap: 1.25rem; }
+    .tier-cta svg { flex-shrink: 0; }
+
+    /* Featured tier */
+    .tier-card.tier-featured {
+      background: #111111;
+      position: relative;
+    }
+    .tier-card.tier-featured .tier-header {
+      border-bottom-color: rgba(234,110,67,0.2);
+    }
+    .tier-featured-label {
+      position: absolute; top: -1px; right: 2rem;
+      background: var(--accent);
+      color: #fff; font-family: var(--font-mono);
+      font-size: 0.6rem; letter-spacing: 0.12em;
+      text-transform: uppercase; padding: 0.3rem 0.75rem;
+    }
+
+    /* ============================================================
+       PROCESS
+       ============================================================ */
+    .section-process {
+      padding: clamp(80px,12vw,160px) 0;
+      border-top: 1px solid var(--border);
+    }
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 1.5px;
+      margin-top: clamp(3rem,5vw,5rem);
+    }
+    .process-step {
+      padding: 2.5rem 2rem;
+      border: 1px solid var(--border);
+      border-left: none;
+      position: relative;
+    }
+    .process-step:first-child { border-left: 1px solid var(--border); }
+    .process-step::after {
+      content: '';
+      position: absolute; top: 50%; right: -1px;
+      width: 1px; height: 40px; background: var(--accent);
+      transform: translateY(-50%);
+    }
+    .process-step:last-child::after { display: none; }
+    .process-num {
+      font-family: var(--font-mono); font-size: 0.65rem;
+      letter-spacing: 0.15em; color: var(--accent); display: block;
+      margin-bottom: 1.25rem;
+    }
+    .process-name {
+      font-size: 1.1rem; font-weight: 600; margin-bottom: 0.6rem;
+      letter-spacing: -0.01em;
+    }
+    .process-desc {
+      font-size: 0.85rem; color: var(--text-muted); line-height: 1.65;
+    }
+
+    /* ============================================================
+       DELIVERABLES HIGHLIGHT
+       ============================================================ */
+    .section-deliverables {
+      padding: clamp(80px,12vw,120px) 0;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .deliverables-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(3rem,6vw,8rem);
+      align-items: start;
+    }
+    .deliverables-headline {
+      font-size: clamp(2rem,3.5vw,3rem); font-weight: 700;
+      letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 1.25rem;
+    }
+    .deliverables-headline em { color: var(--accent); font-style: normal; }
+    .deliverables-copy {
+      font-size: 0.95rem; color: var(--text-muted); line-height: 1.75;
+      margin-bottom: 2rem;
+    }
+    .deliverables-list {
+      list-style: none; display: flex; flex-direction: column; gap: 1rem;
+    }
+    .deliverables-list li {
+      display: flex; align-items: flex-start; gap: 1rem;
+      padding-bottom: 1rem; border-bottom: 1px solid var(--border);
+    }
+    .deliverables-list li:last-child { border-bottom: none; padding-bottom: 0; }
+    .deliverables-list li span.dl-icon {
+      width: 2rem; height: 2rem; border: 1px solid var(--border);
+      border-radius: 2px; display: flex; align-items: center;
+      justify-content: center; flex-shrink: 0;
+      font-family: var(--font-mono); font-size: 0.6rem;
+      color: var(--accent); letter-spacing: 0.05em;
+    }
+    .dl-info strong {
+      display: block; font-size: 0.9rem; font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+    .dl-info span {
+      font-size: 0.8rem; color: var(--text-muted);
+    }
+
+    /* ============================================================
+       CTA / CONTACT
+       ============================================================ */
+    .section-contact {
+      padding: clamp(100px,15vw,200px) 0;
+    }
+    .contact-inner { max-width: 760px; }
+    .contact-headline {
+      font-size: clamp(3rem,7vw,6rem); font-weight: 700;
+      letter-spacing: -0.03em; line-height: 1; margin: 1rem 0 1.5rem;
+    }
+    .contact-headline em { font-style: italic; color: var(--accent); }
+    .contact-sub {
+      font-size: 1rem; color: var(--text-muted); max-width: 520px;
+      margin-bottom: 2.5rem; line-height: 1.75;
+    }
+    .cta-btn {
+      display: inline-flex; align-items: center; gap: 1rem;
+      border: 1px solid var(--accent); color: var(--accent);
+      padding: 1rem 2rem; font-size: 0.95rem; font-weight: 500;
+      border-radius: 2px;
+      transition: background 0.25s, color 0.25s, gap 0.25s;
+      margin-bottom: 2.5rem;
+    }
+    .cta-btn:hover { background: var(--accent); color: #fff; gap: 1.5rem; }
+    .contact-note {
+      font-size: 0.8rem; color: var(--text-muted);
+      font-family: var(--font-mono); letter-spacing: 0.06em;
+    }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    .footer {
+      border-top: 1px solid var(--border); padding: 2rem 0;
+    }
+    .footer-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-logo {
+      font-family: var(--font-mono); font-size: 0.8rem;
+      letter-spacing: 0.1em; font-weight: 700;
+    }
+    .footer-copy { font-size: 0.75rem; color: var(--text-muted); }
+
+    /* ============================================================
+       ANIMATIONS
+       ============================================================ */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.4; transform: scaleY(1); }
+      50%       { opacity: 1;   transform: scaleY(1.15); }
+    }
+    .reveal {
+      opacity: 0; transform: translateY(40px);
+      transition: opacity 0.8s cubic-bezier(0.25,0.46,0.45,0.94),
+                  transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* Stagger delays */
+    .pillars-grid .pillar-card:nth-child(1).reveal { transition-delay: 0s; }
+    .pillars-grid .pillar-card:nth-child(2).reveal { transition-delay: 0.1s; }
+    .pillars-grid .pillar-card:nth-child(3).reveal { transition-delay: 0.2s; }
+    .tiers-grid .tier-card:nth-child(1).reveal { transition-delay: 0s; }
+    .tiers-grid .tier-card:nth-child(2).reveal { transition-delay: 0.1s; }
+    .tiers-grid .tier-card:nth-child(3).reveal { transition-delay: 0.2s; }
+    .process-grid .process-step:nth-child(1).reveal { transition-delay: 0s; }
+    .process-grid .process-step:nth-child(2).reveal { transition-delay: 0.08s; }
+    .process-grid .process-step:nth-child(3).reveal { transition-delay: 0.16s; }
+    .process-grid .process-step:nth-child(4).reveal { transition-delay: 0.24s; }
+
+    /* ============================================================
+       ABOUT
+       ============================================================ */
+    .section-about {
+      padding: clamp(80px,12vw,160px) 0;
+      border-top: 1px solid var(--border);
+    }
+    .about-inner {
+      display: grid;
+      grid-template-columns: 420px 1fr;
+      gap: clamp(3rem,6vw,8rem);
+      align-items: start;
+    }
+    .about-photo-wrap {
+      position: relative;
+    }
+    .about-photo {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      filter: grayscale(20%);
+    }
+    .about-photo-accent {
+      position: absolute;
+      bottom: -1px; left: -1px; right: -1px;
+      height: 120px;
+      background: linear-gradient(to top, var(--bg), transparent);
+      pointer-events: none;
+    }
+    .about-logo {
+      font-family: var(--font-mono); font-weight: 700;
+      font-size: clamp(1.1rem,1.8vw,1.4rem);
+      letter-spacing: 0.08em; color: var(--text);
+      margin-bottom: 0.5rem; display: block;
+    }
+    .about-logo em { color: var(--accent); font-style: normal; }
+    .about-title-line {
+      font-family: var(--font-mono); font-size: 0.7rem;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: 2.5rem; display: block;
+    }
+    .about-bio {
+      font-size: clamp(1rem,1.5vw,1.1rem); font-weight: 300;
+      line-height: 1.8; color: rgba(255,255,255,0.85);
+      margin-bottom: 2.5rem; max-width: 560px;
+    }
+    .about-bio strong { font-weight: 600; color: var(--text); }
+    .about-credentials {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .about-credentials span {
+      font-size: 0.7rem; font-family: var(--font-mono);
+      letter-spacing: 0.06em;
+      border: 1px solid var(--border);
+      padding: 0.35rem 0.75rem; color: var(--text-muted); border-radius: 2px;
+    }
+    .about-credentials span.cred-highlight {
+      border-color: rgba(234,110,67,0.4);
+      color: var(--accent);
+    }
+    .about-divider {
+      width: 40px; height: 1px;
+      background: var(--accent); margin-bottom: 2rem;
+    }
+    .about-collab-label {
+      font-family: var(--font-mono); font-size: 0.65rem;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: 1rem; display: block;
+    }
+    .about-collab-list {
+      font-size: 0.85rem; color: var(--text-muted);
+      line-height: 1.9; letter-spacing: 0.02em;
+    }
+
+    /* ============================================================
+       FEATURED PROPERTIES
+       ============================================================ */
+    .section-properties {
+      padding: clamp(80px,12vw,160px) 0;
+      border-top: 1px solid var(--border);
+    }
+    .properties-grid {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 4px;
+      margin-top: clamp(3rem,5vw,5rem);
+    }
+    .property-card {
+      position: relative;
+      height: 70vh; min-height: 480px;
+      overflow: hidden;
+    }
+    .property-video-wrap {
+      position: absolute; inset: 0;
+      pointer-events: none; overflow: hidden;
+    }
+    .property-video-wrap iframe {
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 100vw; height: 56.25vw;
+      min-height: 100%; min-width: 177.78vh;
+      transform: translate(-50%,-50%);
+      border: none;
+    }
+    .property-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(13,13,13,0.97) 0%,
+        rgba(13,13,13,0.5) 50%,
+        rgba(13,13,13,0.15) 100%
+      );
+    }
+    .property-content {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 2.5rem;
+      z-index: 2;
+    }
+    .property-location {
+      font-family: var(--font-mono); font-size: 0.65rem;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--accent); display: block; margin-bottom: 0.75rem;
+    }
+    .property-name {
+      font-size: clamp(1.75rem,3vw,2.5rem); font-weight: 700;
+      letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 0.75rem;
+    }
+    .property-desc {
+      font-size: 0.875rem; color: rgba(255,255,255,0.65);
+      line-height: 1.65; margin-bottom: 1.25rem; max-width: 380px;
+    }
+    .property-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .property-tags span {
+      font-size: 0.65rem; font-family: var(--font-mono);
+      letter-spacing: 0.06em;
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 0.3rem 0.65rem; color: rgba(255,255,255,0.6);
+      border-radius: 2px;
+    }
+
+    /* ============================================================
+       RESPONSIVE
+       ============================================================ */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .banner-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .pillars-grid { grid-template-columns: 1fr; }
+      .pillar-card { aspect-ratio: 16/9; }
+      .tiers-grid { grid-template-columns: 1fr; }
+      .process-grid { grid-template-columns: repeat(2,1fr); }
+      .process-step::after { display: none; }
+      .deliverables-inner { grid-template-columns: 1fr; }
+      .properties-grid { grid-template-columns: 1fr; }
+      .property-card { height: 60vh; }
+      .about-inner { grid-template-columns: 1fr; }
+      .about-photo { aspect-ratio: 4/3; object-position: center 20%; }
+    }
+    @media (max-width: 600px) {
+      :root { --nav-h: 60px; }
+      .manifesto-stats { gap: 2rem; }
+      .process-grid { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+      .property-card { height: 75vw; min-height: 360px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a href="index.html" class="nav-logo">BENJAMIN CO//LAB</a>
+    <div class="nav-links">
+      <a href="index.html#work">Work</a>
+      <a href="index.html#services">Services</a>
+      <a href="index.html#about">About</a>
+      <a href="#contact" class="nav-cta">Inquire</a>
+    </div>
+    <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="index.html#work" class="mobile-link">Work</a>
+    <a href="index.html#services" class="mobile-link">Services</a>
+    <a href="index.html#about" class="mobile-link">About</a>
+    <a href="#contact" class="mobile-link">Inquire</a>
+  </div>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Media Kit &nbsp;·&nbsp; Hospitality Campaign Production</div>
+      <h1 class="hero-title">
+        LUXURY<br>
+        <span class="hero-slash">HOSPITALITY</span><br>
+        CAMPAIGNS
+      </h1>
+      <div class="hero-divider"></div>
+      <p class="hero-tagline">
+        Full-service campaign production for hotels, resorts, and destination experiences.<br>
+        Strategy &nbsp;·&nbsp; Production &nbsp;·&nbsp; Storytelling &nbsp;·&nbsp; Delivery
+      </p>
+    </div>
+    <a href="#about" class="hero-scroll" aria-label="Scroll down">
+      <span class="scroll-label">Scroll</span>
+      <div class="scroll-line"></div>
+    </a>
+  </section>
+
+  <!-- FEATURED PROPERTIES -->
+  <section class="section-properties">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Featured Properties</span>
+        <h2 class="section-title">Campaigns in the Field</h2>
+      </div>
+    </div>
+    <div class="properties-grid">
+
+      <!-- GEEJAM JAMAICA -->
+      <div class="property-card reveal">
+        <div class="property-video-wrap">
+          <iframe
+            src="https://www.youtube.com/embed/t4sy0xWsDSw?autoplay=1&mute=1&loop=1&playlist=t4sy0xWsDSw&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&playsinline=1"
+            allow="autoplay; encrypted-media"
+            allowfullscreen
+            frameborder="0"
+            title="GeeJam Jamaica"
+          ></iframe>
+        </div>
+        <div class="property-overlay"></div>
+        <div class="property-content">
+          <span class="property-location">// Portland Parish, Jamaica</span>
+          <h3 class="property-name">GeeJam</h3>
+          <p class="property-desc">A boutique music-lover's retreat carved into the hills above San San Bay. Cinematic campaign covering the property's signature blend of creative culture, tropical luxury, and immersive experience.</p>
+          <div class="property-tags">
+            <span>Luxury Hospitality</span>
+            <span>Lifestyle</span>
+            <span>Adventure</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- LITTLE FRENCH KEY -->
+      <div class="property-card reveal">
+        <div class="property-video-wrap">
+          <iframe
+            src="https://player.vimeo.com/video/1083565895?autoplay=1&muted=1&loop=1&background=1"
+            allow="autoplay; fullscreen"
+            allowfullscreen
+            frameborder="0"
+            title="Little French Key Resort"
+          ></iframe>
+        </div>
+        <div class="property-overlay"></div>
+        <div class="property-content">
+          <span class="property-location">// Roatan, Honduras</span>
+          <h3 class="property-name">Little French Key</h3>
+          <p class="property-desc">A private island resort anchored in the Caribbean Sea off the coast of Roatan. Campaign built around the full luxury adventure experience — from reef diving to overwater dining.</p>
+          <div class="property-tags">
+            <span>Luxury Adventure</span>
+            <span>Hospitality</span>
+            <span>Health &amp; Wellness</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section-about">
+    <div class="container">
+      <div class="about-inner reveal">
+        <div class="about-photo-wrap">
+          <img src="assets/ben-arnst.png" alt="Ben Arnst" class="about-photo" />
+          <div class="about-photo-accent"></div>
+        </div>
+        <div>
+          <span class="about-logo">BENJAMIN CO<em>//</em>LAB</span>
+          <span class="about-title-line">Photographer &nbsp;·&nbsp; Filmmaker &nbsp;·&nbsp; Director &nbsp;·&nbsp; Producer</span>
+          <p class="about-bio">
+            <strong>Ben Arnst</strong> is a photographer, filmmaker, director, and producer whose work blends cinematic storytelling with strategic brand development. His cinematography has contributed to Emmy Award–winning projects for National Geographic's <em>Life Below Zero</em>, including 100+ days filming in remote regions of Alaska.
+            <br><br>
+            Ben specializes in translating a property's architecture, environment, and guest experience into campaign-grade media that drives real marketing outcomes — awareness, credibility, brand relevance, and bookings. He manages the full campaign from concept through delivery: strategy, casting, production, post, and final asset library.
+          </p>
+          <div class="about-credentials">
+            <span class="cred-highlight">Emmy Award–Winning Cinematography</span>
+            <span>National Geographic</span>
+            <span>BBC</span>
+            <span>Outside Magazine</span>
+            <span>100+ Days Filming in Alaska</span>
+            <span>SFMOMA Façade Build</span>
+          </div>
+          <div class="about-divider"></div>
+          <span class="about-collab-label">Past Collaborators</span>
+          <p class="about-collab-list">
+            National Geographic &nbsp;·&nbsp; GeeJam Studios &nbsp;·&nbsp; Little French Key Island &amp; Resort &nbsp;·&nbsp; BBC &nbsp;·&nbsp; Outside Magazine &nbsp;·&nbsp; The North Face &nbsp;·&nbsp; Eddie Bauer &nbsp;·&nbsp; Salomon &nbsp;·&nbsp; Flow Research Collective &nbsp;·&nbsp; Clif Bar &nbsp;·&nbsp; Squaw Valley | Alpine Meadows &nbsp;·&nbsp; Flylow Gear &nbsp;·&nbsp; Got Milk?
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MANIFESTO -->
+  <section id="about" class="section-manifesto">
+    <div class="container">
+      <p class="manifesto-text reveal">
+        You are not buying content.<br>
+        You are investing in a <em>brand world</em> —<br>
+        <strong>cinematic, intentional, evergreen.</strong>
+      </p>
+      <p class="manifesto-sub reveal">
+        We manage the entire creative campaign from concept through final delivery. Your property gets strategy, production, storytelling, and finished marketing assets — optimized for web, social, and paid media. No trend-chasing. No generic lifestyle footage. A visual identity built to last.
+      </p>
+      <div class="manifesto-stats reveal">
+        <div class="stat-item">
+          <span class="stat-number">8+</span>
+          <span class="stat-label">Years</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">50+</span>
+          <span class="stat-label">Brands</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">3</span>
+          <span class="stat-label">Pillars</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- POSITIONING BANNER -->
+  <section class="section-banner">
+    <div class="container">
+      <div class="banner-inner reveal">
+        <div>
+          <span class="section-label">What we offer</span>
+          <h2 class="banner-headline">
+            Hospitality<br>Campaign<br><em>Production</em>
+          </h2>
+        </div>
+        <ul class="banner-list">
+          <li><span><strong>Creative direction</strong> — a unified visual concept built around your property's identity.</span></li>
+          <li><span><strong>Production planning</strong> — shoot scheduling, logistics, and location coordination handled end to end.</span></li>
+          <li><span><strong>Casting &amp; talent</strong> — curated models and lifestyle talent matched to your brand world.</span></li>
+          <li><span><strong>Photo + video production</strong> — cinematic capture across property, amenities, and experiences.</span></li>
+          <li><span><strong>Editing &amp; post-production</strong> — color grading, sound design, and motion optimized for every platform.</span></li>
+          <li><span><strong>Final asset delivery</strong> — organized, platform-ready files for web, social, and paid media.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PILLARS -->
+  <section class="section-pillars">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Campaign Framework</span>
+        <h2 class="section-title">Three Storytelling Pillars</h2>
+      </div>
+      <div class="pillars-grid">
+        <div class="pillar-card reveal">
+          <div class="pillar-bg pillar-bg-1"></div>
+          <div class="pillar-overlay"></div>
+          <div class="pillar-content">
+            <span class="pillar-num">Pillar 01</span>
+            <h3 class="pillar-name">Luxury Hospitality</h3>
+            <p class="pillar-desc">Architecture, interiors, service moments, and the sensory experience of arrival. We capture what makes guests feel something the moment they walk in.</p>
+            <div class="pillar-tags">
+              <span>Rooms &amp; Suites</span>
+              <span>Dining</span>
+              <span>Architecture</span>
+              <span>Service</span>
+            </div>
+          </div>
+        </div>
+        <div class="pillar-card reveal">
+          <div class="pillar-bg pillar-bg-2"></div>
+          <div class="pillar-overlay"></div>
+          <div class="pillar-content">
+            <span class="pillar-num">Pillar 02</span>
+            <h3 class="pillar-name">Luxury Adventure</h3>
+            <p class="pillar-desc">The terrain, the thrill, the access. From backcountry excursions to desert landscapes — adventure that only your property can unlock.</p>
+            <div class="pillar-tags">
+              <span>Hiking &amp; Trails</span>
+              <span>Water Sports</span>
+              <span>Aerial</span>
+              <span>Landscape</span>
+            </div>
+          </div>
+        </div>
+        <div class="pillar-card reveal">
+          <div class="pillar-bg pillar-bg-3"></div>
+          <div class="pillar-overlay"></div>
+          <div class="pillar-content">
+            <span class="pillar-num">Pillar 03</span>
+            <h3 class="pillar-name">Luxury Health &amp; Wellness</h3>
+            <p class="pillar-desc">Spa, movement, restoration, and ritual. Content that communicates rejuvenation at the highest level — for guests seeking more than a stay.</p>
+            <div class="pillar-tags">
+              <span>Spa &amp; Recovery</span>
+              <span>Yoga &amp; Fitness</span>
+              <span>Pool &amp; Water</span>
+              <span>Mindfulness</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAMPAIGN TIERS -->
+  <section class="section-tiers">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Investment</span>
+        <h2 class="section-title">Campaign Tiers</h2>
+      </div>
+      <div class="tiers-grid">
+
+        <!-- TIER 1 -->
+        <div class="tier-card reveal">
+          <div class="tier-header">
+            <span class="tier-badge">Tier 01</span>
+            <h3 class="tier-name">Hosted Collaboration</h3>
+            <span class="tier-sub">Content trade for stay</span>
+          </div>
+          <div class="tier-body">
+            <div class="tier-price">Content Trade</div>
+            <span class="tier-price-label">Stay + property access in exchange</span>
+
+            <span class="tier-section-title">What We Manage</span>
+            <ul class="tier-list">
+              <li>Creative direction</li>
+              <li>Production planning</li>
+              <li>Photo + video capture</li>
+              <li>Editing and delivery</li>
+            </ul>
+
+            <span class="tier-section-title">Deliverables</span>
+            <ul class="tier-list">
+              <li><strong>1 cinematic drone film</strong> — 30–45 sec</li>
+              <li><strong>3 short reels</strong> — 15–30 sec each, one per pillar</li>
+              <li><strong>20–30 edited photos</strong> — architecture + lifestyle</li>
+            </ul>
+
+            <span class="tier-section-title">Usage &amp; Timeline</span>
+            <ul class="tier-list">
+              <li>6-month organic digital license</li>
+              <li>Non-exclusive usage rights</li>
+              <li>Selects: 7–10 days</li>
+              <li>Final delivery: 14–21 days</li>
+            </ul>
+          </div>
+          <div class="tier-footer">
+            <a href="#contact" class="tier-cta">
+              <span>Inquire About This Tier</span>
+              <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M4 10h12M10 4l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- TIER 2 — FEATURED -->
+        <div class="tier-card tier-featured reveal">
+          <div class="tier-featured-label">Most Popular</div>
+          <div class="tier-header">
+            <span class="tier-badge">Tier 02</span>
+            <h3 class="tier-name">Boutique Campaign</h3>
+            <span class="tier-sub">Paid production campaign</span>
+          </div>
+          <div class="tier-body">
+            <div class="tier-price">$4K – $8K</div>
+            <span class="tier-price-label">Typical budget range</span>
+
+            <span class="tier-section-title">What We Manage</span>
+            <ul class="tier-list">
+              <li>Creative concept</li>
+              <li>Production planning</li>
+              <li>Casting — 1–2 models</li>
+              <li>Full photo + video production</li>
+              <li>Editing and delivery</li>
+            </ul>
+
+            <span class="tier-section-title">Production</span>
+            <ul class="tier-list">
+              <li><strong>1 full production day</strong> — 6–8 hours</li>
+              <li>1–2 curated models</li>
+              <li>Full property coverage</li>
+            </ul>
+
+            <span class="tier-section-title">Deliverables</span>
+            <ul class="tier-list">
+              <li><strong>1 cinematic brand film</strong> — 45–60 sec</li>
+              <li><strong>4–6 social videos</strong> / reels</li>
+              <li><strong>40–60 edited photos</strong></li>
+              <li>Drone + architectural coverage</li>
+            </ul>
+
+            <span class="tier-section-title">Usage</span>
+            <ul class="tier-list">
+              <li>12-month organic digital license</li>
+              <li>Optional expanded rights available</li>
+            </ul>
+          </div>
+          <div class="tier-footer">
+            <a href="#contact" class="tier-cta">
+              <span>Inquire About This Tier</span>
+              <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M4 10h12M10 4l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- TIER 3 -->
+        <div class="tier-card reveal">
+          <div class="tier-header">
+            <span class="tier-badge">Tier 03</span>
+            <h3 class="tier-name">Destination Campaign</h3>
+            <span class="tier-sub">Full hospitality campaign</span>
+          </div>
+          <div class="tier-body">
+            <div class="tier-price">$12K – $20K+</div>
+            <span class="tier-price-label">Typical budget range</span>
+
+            <span class="tier-section-title">What We Manage</span>
+            <ul class="tier-list">
+              <li>Full campaign creative direction</li>
+              <li>Production planning</li>
+              <li>Casting and talent coordination</li>
+              <li>Multi-day production</li>
+              <li>Complete post-production</li>
+            </ul>
+
+            <span class="tier-section-title">Production</span>
+            <ul class="tier-list">
+              <li><strong>2-day full production</strong></li>
+              <li>Curated lifestyle talent</li>
+              <li>Expanded property + experience coverage</li>
+            </ul>
+
+            <span class="tier-section-title">Deliverables</span>
+            <ul class="tier-list">
+              <li><strong>1 hero film</strong> — 60–90 sec</li>
+              <li><strong>6–10 social videos</strong> / reels</li>
+              <li><strong>80–120 edited photos</strong></li>
+              <li>Full property + experience coverage</li>
+            </ul>
+
+            <span class="tier-section-title">Usage</span>
+            <ul class="tier-list">
+              <li>Expanded marketing rights</li>
+              <li>Website / digital / paid media options</li>
+            </ul>
+          </div>
+          <div class="tier-footer">
+            <a href="#contact" class="tier-cta">
+              <span>Inquire About This Tier</span>
+              <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M4 10h12M10 4l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- DELIVERABLES HIGHLIGHT -->
+  <section class="section-deliverables">
+    <div class="container">
+      <div class="deliverables-inner reveal">
+        <div>
+          <span class="section-label">Every Campaign Includes</span>
+          <h2 class="deliverables-headline">
+            Built for <em>Marketing</em>.<br>Optimized for Every Platform.
+          </h2>
+          <p class="deliverables-copy">
+            Every asset we deliver is platform-ready and organized for your team. From your website hero to your Instagram feed to paid media — your content library works across the full distribution stack.
+          </p>
+        </div>
+        <ul class="deliverables-list">
+          <li>
+            <span class="dl-icon">VID</span>
+            <div class="dl-info">
+              <strong>Cinematic Brand Films</strong>
+              <span>Hero films and reels cut for web, Reels, and TikTok</span>
+            </div>
+          </li>
+          <li>
+            <span class="dl-icon">PHO</span>
+            <div class="dl-info">
+              <strong>High-Resolution Photography</strong>
+              <span>Edited lifestyle + architectural stills for all digital uses</span>
+            </div>
+          </li>
+          <li>
+            <span class="dl-icon">AER</span>
+            <div class="dl-info">
+              <strong>Aerial / Drone Coverage</strong>
+              <span>Cinematic property overviews and landscape captures</span>
+            </div>
+          </li>
+          <li>
+            <span class="dl-icon">SOC</span>
+            <div class="dl-info">
+              <strong>Platform-Optimized Cuts</strong>
+              <span>Short-form video formatted for each social platform</span>
+            </div>
+          </li>
+          <li>
+            <span class="dl-icon">DIR</span>
+            <div class="dl-info">
+              <strong>Organized Asset Library</strong>
+              <span>Clean file delivery sorted and labeled for your marketing team</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="section-process">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">How It Works</span>
+        <h2 class="section-title">From Inquiry to Delivery</h2>
+      </div>
+      <div class="process-grid">
+        <div class="process-step reveal">
+          <span class="process-num">Step 01</span>
+          <h3 class="process-name">Discovery Call</h3>
+          <p class="process-desc">We align on your property, brand goals, ideal guest profile, and the storytelling pillars most relevant to your marketing strategy.</p>
+        </div>
+        <div class="process-step reveal">
+          <span class="process-num">Step 02</span>
+          <h3 class="process-name">Creative Proposal</h3>
+          <p class="process-desc">We deliver a custom campaign brief — concept, shot list, talent direction, timeline, and tier recommendation — tailored to your property.</p>
+        </div>
+        <div class="process-step reveal">
+          <span class="process-num">Step 03</span>
+          <h3 class="process-name">Production</h3>
+          <p class="process-desc">Our team arrives on-property fully prepared. We handle logistics, talent, and execution so your staff is never burdened by the shoot.</p>
+        </div>
+        <div class="process-step reveal">
+          <span class="process-num">Step 04</span>
+          <h3 class="process-name">Delivery</h3>
+          <p class="process-desc">Selects delivered in 7–10 days. Final edited assets in 14–21 days. All files organized and ready for your marketing team to deploy.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="contact" class="section-contact">
+    <div class="container">
+      <div class="contact-inner reveal">
+        <span class="section-label">Start the conversation</span>
+        <h2 class="contact-headline">
+          Let's build your<br><em>property's</em><br>brand world.
+        </h2>
+        <p class="contact-sub">
+          Tell us about your property, your audience, and your content goals. We'll respond within 48 hours with a custom campaign recommendation.
+        </p>
+        <a href="mailto:hello@benjamincolab.com?subject=Hospitality%20Campaign%20Inquiry" class="cta-btn">
+          <span>hello@benjamincolab.com</span>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12M10 4l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <p class="contact-note">// Available for hotels &nbsp;·&nbsp; resorts &nbsp;·&nbsp; private estates &nbsp;·&nbsp; destination VRBOs</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <span class="footer-logo">BENJAMIN CO//LAB</span>
+        <span class="footer-copy">© 2026 Benjamin Co//Lab. Luxury Hospitality Campaigns &nbsp;·&nbsp; Northern CA</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* NAV scroll effect */
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 20);
+    }, { passive: true });
+
+    /* Mobile hamburger */
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    hamburger.addEventListener('click', () => {
+      mobileMenu.classList.toggle('open');
+    });
+    mobileMenu.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => mobileMenu.classList.remove('open'));
+    });
+
+    /* Scroll reveal */
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

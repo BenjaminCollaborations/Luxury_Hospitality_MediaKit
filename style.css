@@ -441,6 +441,101 @@ img {
 }
 
 /* ============================================================
+   LUXURY HOSPITALITY
+   ============================================================ */
+
+.section-hospitality {
+  position: relative;
+  padding: clamp(100px, 15vw, 200px) 0;
+  overflow: hidden;
+}
+
+.hospitality-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('https://images.squarespace-cdn.com/content/v1/54ac9668e4b0f02457ca9563/1620498663722-7VBCZC1MD71BC7UO99NR/042321_Sapporo+Beverage+Brand+Images_001.jpg');
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.05);
+  transition: transform 8s ease;
+  filter: saturate(0.7);
+}
+
+.section-hospitality:hover .hospitality-bg {
+  transform: scale(1);
+}
+
+.hospitality-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(13,13,13,0.92) 0%,
+    rgba(13,13,13,0.75) 50%,
+    rgba(13,13,13,0.88) 100%
+  );
+}
+
+.hospitality-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 680px;
+}
+
+.hospitality-title {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin: 0.75rem 0 1.25rem;
+}
+
+.hospitality-desc {
+  font-size: clamp(1rem, 1.4vw, 1.125rem);
+  color: rgba(255,255,255,0.75);
+  line-height: 1.75;
+  margin-bottom: 1.75rem;
+  max-width: 540px;
+}
+
+.hospitality-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.hospitality-tags span {
+  font-size: 0.7rem;
+  font-family: var(--font-mono);
+  letter-spacing: 0.06em;
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 0.35rem 0.85rem;
+  color: rgba(255,255,255,0.6);
+  border-radius: 2px;
+}
+
+.hospitality-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 1rem 2rem;
+  border-radius: 2px;
+  transition: background 0.25s, gap 0.25s;
+  letter-spacing: 0.02em;
+}
+
+.hospitality-btn:hover {
+  background: var(--accent-hover);
+  gap: 1.5rem;
+}
+
+/* ============================================================
    BIO
    ============================================================ */
 
@@ -706,6 +801,111 @@ img {
   background: var(--accent);
   color: #fff;
   gap: 1.5rem;
+}
+
+/* Contact Form */
+.contact-form {
+  width: 100%;
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: 3rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  padding: 0.875rem 1rem;
+  border-radius: 2px;
+  outline: none;
+  transition: border-color 0.2s;
+  width: 100%;
+  -webkit-appearance: none;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: rgba(255,255,255,0.2);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--accent);
+}
+
+.form-group select option {
+  background: var(--surface2);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 140px;
+  line-height: 1.6;
+}
+
+.form-submit {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  background: none;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 1rem 2rem;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background 0.25s, color 0.25s, gap 0.25s;
+  align-self: flex-start;
+}
+
+.form-submit:hover {
+  background: var(--accent);
+  color: #fff;
+  gap: 1.5rem;
+}
+
+.form-success {
+  display: none;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 600px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
 }
 
 .contact-socials {

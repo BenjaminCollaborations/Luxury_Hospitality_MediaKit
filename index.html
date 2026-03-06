@@ -17,6 +17,7 @@
     <div class="nav-links">
       <a href="#work">Work</a>
       <a href="#services">Services</a>
+      <a href="#hospitality">Hospitality</a>
       <a href="#bio">About</a>
       <a href="#contact" class="nav-cta">Get in touch</a>
     </div>
@@ -222,6 +223,29 @@
     </div>
   </section>
 
+  <!-- LUXURY HOSPITALITY -->
+  <section id="hospitality" class="section-hospitality">
+    <div class="hospitality-bg"></div>
+    <div class="hospitality-overlay"></div>
+    <div class="container">
+      <div class="hospitality-inner reveal">
+        <span class="section-label">Vertical</span>
+        <h2 class="hospitality-title">Luxury Hospitality</h2>
+        <p class="hospitality-desc">World-class visual media for hotels, resorts, and hospitality brands. From cinematic property films to campaign photography — built to attract the guests that matter.</p>
+        <div class="hospitality-tags">
+          <span>Property Films</span>
+          <span>Campaign Photography</span>
+          <span>Brand Identity</span>
+          <span>Social Content</span>
+        </div>
+        <a href="hospitality.html" class="hospitality-btn">
+          <span>View Media Kit</span>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12M10 4l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <!-- BIO -->
   <section id="bio" class="section-bio">
     <div class="container">
@@ -257,10 +281,44 @@
         <span class="section-label">Ready to create</span>
         <h2 class="contact-headline">Let's build<br><em>something.</em></h2>
         <p class="contact-sub">Reach out for brand campaigns, film projects, weddings, or anything in between.</p>
-        <a href="mailto:hello@benjamincolab.com" class="cta-btn">
-          <span>hello@benjamincolab.com</span>
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12M10 4l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
+
+        <form class="contact-form" action="https://api.web3forms.com/submit" method="POST" id="contact-form">
+          <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_KEY" />
+          <input type="hidden" name="subject" value="New message from BenjaminCoLab.com" />
+          <input type="hidden" name="from_name" value="Benjamin Co//Lab Website" />
+          <input type="checkbox" name="botcheck" style="display:none" />
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" placeholder="Your name" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="your@email.com" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="service">What's this about?</label>
+            <select id="service" name="service">
+              <option value="">Select a service</option>
+              <option value="Brand Campaign">Brand Campaign</option>
+              <option value="Film / Video">Film / Video</option>
+              <option value="Photography">Photography</option>
+              <option value="Wedding">Wedding</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" placeholder="Tell me about your project..." required></textarea>
+          </div>
+          <button type="submit" class="form-submit">
+            <span>Send Message</span>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12M10 4l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <p class="form-success" id="form-success">Message sent! I'll be in touch soon.</p>
+        </form>
+
         <div class="contact-socials">
           <a href="https://www.instagram.com" target="_blank" rel="noopener">Instagram</a>
           <a href="https://www.youtube.com/@benjamincolab" target="_blank" rel="noopener">YouTube</a>

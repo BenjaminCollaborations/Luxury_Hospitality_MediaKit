@@ -44,6 +44,28 @@ const observer = new IntersectionObserver((entries) => {
 
 revealEls.forEach(el => observer.observe(el));
 
+// --- Contact form (Web3Forms) ---
+const contactForm = document.getElementById('contact-form');
+if (contactForm) {
+  contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = contactForm.querySelector('.form-submit span');
+    const success = document.getElementById('form-success');
+    btn.textContent = 'Sending...';
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      body: new FormData(contactForm)
+    });
+    if (res.ok) {
+      contactForm.reset();
+      btn.textContent = 'Send Message';
+      success.style.display = 'block';
+    } else {
+      btn.textContent = 'Try again';
+    }
+  });
+}
+
 // --- Smooth anchor scroll (for older browsers) ---
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', (e) => {

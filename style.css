@@ -938,6 +938,19 @@ img {
   padding: 2rem 0;
 }
 
+.footer-email {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.footer-email:hover {
+  border-color: var(--accent);
+}
+
 .footer-inner {
   display: flex;
   align-items: center;

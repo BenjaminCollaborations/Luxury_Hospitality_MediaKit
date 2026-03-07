@@ -396,6 +396,21 @@ img {
   transform: scale(1.04);
 }
 
+.service-video-wrap {
+  width: 100%;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  position: relative;
+  background: #000;
+}
+
+.service-video-wrap iframe {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border: none;
+}
+
 .service-body {
   padding: 2rem;
   flex: 1;

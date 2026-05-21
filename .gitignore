@@ -3,3 +3,4 @@ assets/*.jpg
 assets/*.jpeg
 assets/*.png
 !assets/ben-arnst.png
+.vercel

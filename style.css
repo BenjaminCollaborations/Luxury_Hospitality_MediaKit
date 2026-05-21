@@ -1239,10 +1239,14 @@ img {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 20px;
-  padding: 32px 28px;
   position: relative;
   backdrop-filter: blur(20px);
   box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+.brief-preview-card:hover {
+  border-color: rgba(234, 110, 67, 0.3);
 }
 .brief-preview-card::before {
   content: '';
@@ -1256,13 +1260,47 @@ img {
   mask-composite: exclude;
   pointer-events: none;
 }
+.brief-preview-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: transparent;
+  border: none;
+  padding: 24px 28px;
+  cursor: pointer;
+  color: inherit;
+  font-family: inherit;
+  text-align: left;
+  position: relative;
+  z-index: 1;
+}
+.brief-preview-chevron {
+  color: var(--accent);
+  transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.brief-preview-card.collapsed .brief-preview-chevron {
+  transform: rotate(-90deg);
+}
+.brief-preview-body {
+  padding: 0 28px 28px;
+  max-height: 600px;
+  opacity: 1;
+  transition: max-height 0.4s cubic-bezier(0.2, 0.7, 0.2, 1), opacity 0.3s ease, padding 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+  overflow: hidden;
+}
+.brief-preview-card.collapsed .brief-preview-body {
+  max-height: 0;
+  opacity: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
 .brief-preview-tag {
   font-family: var(--font-mono);
   font-size: 0.7rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--accent);
-  margin-bottom: 22px;
 }
 .brief-preview-list {
   list-style: none;

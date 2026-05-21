@@ -1089,3 +1089,272 @@ img {
     align-items: flex-start;
   }
 }
+
+/* ============================================================
+   CREATIVE BRIEF QUESTIONNAIRE — CTA Section
+   ============================================================ */
+.section-brief {
+  padding: 8rem 0 6rem;
+  background: linear-gradient(180deg, var(--bg) 0%, #0a0908 100%);
+  border-top: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.section-brief::before {
+  content: '';
+  position: absolute;
+  top: -200px;
+  left: 10%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(234, 110, 67, 0.10), transparent 60%);
+  pointer-events: none;
+}
+.section-brief::after {
+  content: '';
+  position: absolute;
+  bottom: -200px;
+  right: 5%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(234, 110, 67, 0.06), transparent 60%);
+  pointer-events: none;
+}
+.brief-inner {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 80px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+.brief-headline {
+  font-size: clamp(2.2rem, 4.5vw, 4rem);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin: 1rem 0 1.5rem;
+}
+.brief-headline em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--accent);
+}
+.brief-sub {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+  max-width: 540px;
+  margin-bottom: 2.5rem;
+}
+.brief-form {
+  margin-bottom: 1.75rem;
+}
+.brief-form-row {
+  display: flex;
+  gap: 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 6px;
+  max-width: 520px;
+  transition: border-color 0.2s, background 0.2s;
+}
+.brief-form-row:focus-within {
+  border-color: var(--accent);
+  background: var(--surface2);
+}
+.brief-form-row input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  padding: 14px 16px;
+  outline: none;
+}
+.brief-form-row input::placeholder {
+  color: var(--text-muted);
+}
+.brief-form-submit {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 10px;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+.brief-form-submit:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+}
+.brief-form-meta {
+  margin-top: 14px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+}
+.brief-launch {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 28px;
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: all 0.25s;
+}
+.brief-launch:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px -8px rgba(234, 110, 67, 0.35);
+}
+.brief-launch svg {
+  transition: transform 0.25s;
+}
+.brief-launch:hover svg {
+  transform: translateX(3px);
+}
+
+/* Preview card */
+.brief-preview {
+  position: relative;
+}
+.brief-preview-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 32px 28px;
+  position: relative;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.6);
+}
+.brief-preview-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 1px;
+  background: linear-gradient(180deg, rgba(234, 110, 67, 0.25), transparent 60%);
+  -webkit-mask: linear-gradient(#000, #000) content-box, linear-gradient(#000, #000);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+.brief-preview-tag {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 22px;
+}
+.brief-preview-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px;
+}
+.brief-preview-list li {
+  display: flex;
+  gap: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  font-size: 0.92rem;
+}
+.brief-preview-list li:last-child {
+  border-bottom: none;
+}
+.brief-preview-list li span {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  flex-shrink: 0;
+  width: 24px;
+}
+.brief-preview-footer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+.brief-preview-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 12px var(--accent);
+  animation: briefPulse 2.4s ease-in-out infinite;
+}
+@keyframes briefPulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.3); }
+}
+
+.brief-form-success {
+  display: none;
+  margin-top: 16px;
+  padding: 14px 18px;
+  background: rgba(234, 110, 67, 0.08);
+  border: 1px solid rgba(234, 110, 67, 0.3);
+  border-radius: 10px;
+  color: var(--accent);
+  font-size: 0.9rem;
+  font-family: var(--font-sans);
+}
+.brief-form-success.show {
+  display: block;
+}
+
+@media (max-width: 880px) {
+  .section-brief {
+    padding: 5rem 0 4rem;
+  }
+  .brief-inner {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .brief-form-row {
+    flex-direction: column;
+    background: transparent;
+    border: none;
+    padding: 0;
+    gap: 12px;
+  }
+  .brief-form-row input {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 18px;
+  }
+  .brief-form-submit {
+    justify-content: center;
+    padding: 16px 22px;
+  }
+  .brief-launch {
+    width: 100%;
+    justify-content: center;
+  }
+}

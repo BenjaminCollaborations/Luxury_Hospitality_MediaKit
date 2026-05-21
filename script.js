@@ -66,6 +66,28 @@ if (contactForm) {
   });
 }
 
+// --- Creative Brief Questionnaire — email handoff ---
+function handleBriefForm(e) {
+  e.preventDefault();
+  const email = document.getElementById('brief-email').value.trim();
+  if (!email) return false;
+  const subject = encodeURIComponent('Send me the Creative Brief Questionnaire');
+  const body = encodeURIComponent(
+    `Hi Ben,\n\nPlease send me the creative brief questionnaire — I'd like to fill it out before our meeting.\n\nMy email: ${email}\n\nThanks,`
+  );
+  window.location.href = `mailto:Ben@BenjaminCoLab.com?subject=${subject}&body=${body}`;
+  const form = document.getElementById('brief-form');
+  let success = form.querySelector('.brief-form-success');
+  if (!success) {
+    success = document.createElement('p');
+    success.className = 'brief-form-success';
+    form.appendChild(success);
+  }
+  success.textContent = `Email opened — send it from your mail client and Ben will reply with the brief link.`;
+  success.classList.add('show');
+  return false;
+}
+
 // --- Smooth anchor scroll (for older browsers) ---
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', (e) => {

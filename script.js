@@ -66,21 +66,31 @@ if (contactForm) {
   });
 }
 
-// --- Creative Brief Questionnaire — auto-reply with link via FormSubmit ---
+// ============================================================
+// EMAILJS — auto-send the brief link to the submitter
+// SETUP (4 min): https://www.emailjs.com — sign up, add Gmail
+// service (OAuth), create a template, paste 3 IDs below.
+// Template variables to use: {{user_email}}, {{brief_link}}
+// ============================================================
+const EMAILJS_PUBLIC_KEY  = 'PASTE_PUBLIC_KEY_HERE';
+const EMAILJS_SERVICE_ID  = 'PASTE_SERVICE_ID_HERE';
+const EMAILJS_TEMPLATE_ID = 'PASTE_TEMPLATE_ID_HERE';
+const BRIEF_LINK = 'https://benjamincolab-brief-builder.vercel.app';
+
+if (typeof emailjs !== 'undefined' && EMAILJS_PUBLIC_KEY !== 'PASTE_PUBLIC_KEY_HERE') {
+  emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+}
+
 async function handleBriefForm(e) {
   e.preventDefault();
   const emailInput = document.getElementById('brief-email');
-  const email = emailInput.value.trim();
+  const email = (emailInput.value || '').trim();
   if (!email) return false;
 
   const form = document.getElementById('brief-form');
   const btn = document.getElementById('brief-submit-btn');
   const btnSpan = btn.querySelector('span');
   const originalLabel = btnSpan.textContent;
-
-  btnSpan.textContent = 'Sending...';
-  btn.disabled = true;
-
   let success = form.querySelector('.brief-form-success');
   if (!success) {
     success = document.createElement('p');
@@ -88,30 +98,34 @@ async function handleBriefForm(e) {
     form.appendChild(success);
   }
 
+  // Fallback if EmailJS isn't configured yet — open user's mail client
+  if (EMAILJS_PUBLIC_KEY === 'PASTE_PUBLIC_KEY_HERE' || typeof emailjs === 'undefined') {
+    const subject = encodeURIComponent('Send me the Creative Brief Questionnaire');
+    const body = encodeURIComponent(`Hi Ben,\n\nPlease send me the questionnaire — link: ${BRIEF_LINK}\n\nMy email: ${email}\n\nThanks,`);
+    window.location.href = `mailto:Ben@BenjaminCoLab.com?subject=${subject}&body=${body}`;
+    success.innerHTML = `Email opened in your mail client — hit send and Ben will reply with the brief link.`;
+    success.classList.add('show');
+    return false;
+  }
+
+  btnSpan.textContent = 'Sending...';
+  btn.disabled = true;
+
   try {
-    const res = await fetch('https://formsubmit.co/ajax/Ben@BenjaminCoLab.com', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({
-        email: email,
-        _subject: 'New Brief Questionnaire request — auto-sent link',
-        _template: 'table',
-        _captcha: 'false',
-        _autoresponse: `Hey —\n\nThanks for reaching out. Here's the Creative Brief Questionnaire we'll work through together:\n\nhttps://benjamincolab-brief-builder.vercel.app\n\nFill it out before our meeting and export the PDF when you're done, or we can walk through it together on our call. Either way, this gets us aligned fast.\n\nSee you soon.\n— Ben\nBenjamin Co//Lab\nBen@BenjaminCoLab.com`
-      })
+    await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+      user_email: email,
+      to_email: email,
+      brief_link: BRIEF_LINK,
+      reply_to: 'Ben@BenjaminCoLab.com'
     });
-    const data = await res.json().catch(() => ({}));
-    if (res.ok && data.success !== false) {
-      success.innerHTML = `<strong>Sent.</strong> Check <strong style="color:var(--text)">${email}</strong> — the questionnaire link is on its way.`;
-      success.classList.add('show');
-      emailInput.value = '';
-      btnSpan.textContent = 'Sent ✓';
-      setTimeout(() => { btnSpan.textContent = originalLabel; btn.disabled = false; }, 4000);
-    } else {
-      throw new Error('FormSubmit rejected');
-    }
+    success.innerHTML = `<strong>Sent.</strong> Check <strong style="color:var(--text)">${email}</strong> — the questionnaire link is on its way.`;
+    success.classList.add('show');
+    emailInput.value = '';
+    btnSpan.textContent = 'Sent ✓';
+    setTimeout(() => { btnSpan.textContent = originalLabel; btn.disabled = false; }, 4000);
   } catch (err) {
-    success.innerHTML = `Couldn't send automatically. Email Ben directly at <a href="mailto:Ben@BenjaminCoLab.com?subject=Send%20me%20the%20Creative%20Brief&body=Hi%20Ben%2C%20please%20send%20me%20the%20questionnaire.%20My%20email%3A%20${encodeURIComponent(email)}" style="color:var(--accent)">Ben@BenjaminCoLab.com</a>.`;
+    console.error('EmailJS send failed:', err);
+    success.innerHTML = `Couldn't send automatically. Email Ben at <a href="mailto:Ben@BenjaminCoLab.com?subject=Send%20me%20the%20Brief&body=My%20email%3A%20${encodeURIComponent(email)}" style="color:var(--accent)">Ben@BenjaminCoLab.com</a> and he'll send the link.`;
     success.classList.add('show');
     btnSpan.textContent = originalLabel;
     btn.disabled = false;
